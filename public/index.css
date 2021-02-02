@@ -1,0 +1,605 @@
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXclJURRD.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcBJURRD.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcpJURRD.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcRJUQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXclJURRD.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcBJURRD.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcpJURRD.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcRJUQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXclJURRD.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcBJURRD.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcpJURRD.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Jura';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/jura/v16/z7NbdRfiaC4VXcRJUQ.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* a lot of things from github.com/necolas/normalize.css */
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+ul[class],
+ol[class] {
+  padding: 0;
+  list-style: none;
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+main {
+  display: block;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+}
+.p-0 {
+  padding: 0rem !important;
+}
+.m-0 {
+  margin: 0rem !important;
+}
+.p-1 {
+  padding: 0.5rem !important;
+}
+.m-1 {
+  margin: 0.5rem !important;
+}
+.p-2 {
+  padding: 1rem !important;
+}
+.m-2 {
+  margin: 1rem !important;
+}
+.p-3 {
+  padding: 1.5rem !important;
+}
+.m-3 {
+  margin: 1.5rem !important;
+}
+.p-4 {
+  padding: 2rem !important;
+}
+.m-4 {
+  margin: 2rem !important;
+}
+.p-5 {
+  padding: 2.5rem !important;
+}
+.m-5 {
+  margin: 2.5rem !important;
+}
+.p-6 {
+  padding: 3rem !important;
+}
+.m-6 {
+  margin: 3rem !important;
+}
+.p-7 {
+  padding: 3.5rem !important;
+}
+.m-7 {
+  margin: 3.5rem !important;
+}
+.p-8 {
+  padding: 4rem !important;
+}
+.m-8 {
+  margin: 4rem !important;
+}
+.p-9 {
+  padding: 4.5rem !important;
+}
+.m-9 {
+  margin: 4.5rem !important;
+}
+.p-10 {
+  padding: 5rem !important;
+}
+.m-10 {
+  margin: 5rem !important;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 16px;
+  font-family: "Jura", sans-serif;
+  line-height: normal;
+  font-weight: 400;
+  padding: 1px;
+  margin: 0;
+  background-color: #b5b5da;
+}
+img {
+  max-width: 100%;
+}
+/*
+ * Buttons
+ *
+ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  letter-spacing: 0.025em;
+  font-size: 0.75rem;
+  color: #0a010e;
+  padding: 0.425rem 1rem;
+  max-height: 30px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  outline: none;
+  user-select: none;
+}
+.button:disabled {
+  background-color: #d1c7ce !important;
+}
+.button:disabled .button__text {
+  color: #4e086d;
+  text-shadow: 1px 1px 0 #fff;
+}
+.button:before {
+  width: 100%;
+  height: 100%;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid #858585;
+  border-bottom: 1px solid #858585;
+}
+.button:before, .button:after {
+  content: "";
+  position: absolute;
+  box-sizing: border-box;
+  display: block;
+  background: transparent;
+  top: 0;
+  left: 0;
+}
+.button:active:before, .button:active:after {
+  border-color: transparent;
+}
+.button__text {
+  display: block;
+  border: 1px dotted transparent;
+}
+.button:focus .button__text {
+  border-color: #000000;
+}
+.button-primary {
+  color: #0a010e;
+  background-color: #d1c7ce;
+  border-color: #494449;
+}
+.button-secondary {
+  color: #ffffff;
+  background-color: #24247c;
+  border-color: #1b1b7e;
+}
+.button-bordered {
+  border-width: 2px;
+}
+
+/*
+ * Inputs
+ *
+ */
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=search],
+textarea {
+  width: 100%;
+  padding: 0.3rem;
+  font-size: 0.75rem;
+  border: 1px solid transparent;
+  outline: unset;
+  background-color: #ede6eb;
+  border-color: #494449;
+}
+input[type=text]:disabled,
+input[type=email]:disabled,
+input[type=password]:disabled,
+input[type=search]:disabled,
+textarea:disabled {
+  background-color: #D1C7CE;
+}
+
+/*
+ * Checkboxes, Radios
+ *
+ */
+.input-checkbox,
+.input-radio {
+  position: relative;
+  display: block;
+  padding-left: 1rem;
+  margin-bottom: 0.35rem;
+}
+.input-checkbox input,
+.input-radio input {
+  opacity: 0;
+  position: absolute;
+  visibility: hidden;
+  color: #000000;
+}
+input:disabled + .input-checkbox__label,
+input:disabled + .input-radio__label {
+  color: gray !important;
+}
+.input-checkbox:after, .input-checkbox:before,
+.input-radio:after,
+.input-radio:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: 0;
+  top: 0;
+  background-color: #ede6eb;
+  border: 1px solid #636363;
+  border-radius: 0;
+}
+.input-checkbox__label,
+.input-radio__label {
+  display: inline-block;
+  position: relative;
+  padding-left: 0.45rem;
+  font-weight: 400;
+  line-height: 16px;
+  margin-bottom: 0;
+  user-select: none;
+}
+.input-checkbox__label:after, .input-checkbox__label:before,
+.input-radio__label:after,
+.input-radio__label:before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  left: -0.55rem;
+  top: 0.25rem;
+  z-index: 1;
+}
+
+input:checked + .input-checkbox__label:after, input:checked + .input-checkbox__label:before {
+  width: 2px;
+  height: 10px;
+  background: #887b82;
+}
+input:checked + .input-checkbox__label:before {
+  transform: rotate(-135deg);
+}
+input:checked + .input-checkbox__label:after {
+  transform: rotate(135deg);
+}
+
+.input-radio:after, .input-radio:before {
+  border-radius: 50%;
+}
+input:checked + .input-radio__label:after, input:checked + .input-radio__label:before {
+  width: 6px;
+  height: 6px;
+  left: -0.65rem;
+  top: 0.3rem;
+  background: #887b82;
+  border-radius: 50%;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid #494449;
+  border-bottom: 1px solid #494449;
+  box-shadow: 0 0 0 1px #494449;
+  background-color: #d1c7ce;
+}
+.card__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.2rem;
+  padding: 0.2rem;
+  font-weight: 700;
+  color: #d1c7ce;
+  background-color: #847a8e;
+  border: 1px solid #494449;
+}
+.card__controlls {
+  display: flex;
+}
+.card__controlls button {
+  margin-left: 0.25rem;
+  width: 20px;
+  height: 20px;
+  font-weight: 700;
+}
+.card__body {
+  margin: 0.2rem;
+  border: 1px solid #494449;
+}
+.card__content {
+  padding: 0.35rem;
+}
+/*# sourceMappingURL=index.css.map */

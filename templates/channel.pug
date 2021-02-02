@@ -1,0 +1,24 @@
+extends layouts/channel.pug
+block header
+  .page-header__inner
+    include components/navbar
+block content
+  .channel-wrapper(class="p-1")
+    .p-2
+      input(type="text" class="p-1" id="chatusername" placeholder="What's your name?")
+    .chat(class="card")
+      .card__header
+        .card__icon
+        .card__title
+          span#userscount 1
+          |  connected users
+        .card__controlls
+          button(class="button button-primary p-0" disabled)
+            span.button__text _
+          button(class="button button-primary p-0")
+            span.button__text ×
+      .card__body
+        .chat__buffer
+          .card__content(id="chatbuffer")
+        .p-1
+          input(type="text" class="p-1" id="chatinput" placeholder="Did you realy have something to say?")

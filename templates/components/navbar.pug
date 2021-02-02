@@ -1,0 +1,18 @@
+nav.nav-main(aria-label="Main navigation", data-toggleable="true")
+  button.nav-main__toggler(type="button")
+    i.sr-only Show navigation
+    span.toggler__top
+    span.toggler__mid
+    span.toggler__bot
+
+  .nav-main__inner
+    ul.nav-main__list.nav-main__list--main
+      li.nav-main__item
+        a.nav-main__link(href="/") Home
+      li.nav-main__item
+        a.nav-main__link(href="/about") About
+    ul.nav-main__list.nav-main__list--user
+      li.nav-main__item
+        a.nav-main__link(href="/login") Login
+      li.nav-main__item
+        a.nav-main__link(href="/registration") Registration

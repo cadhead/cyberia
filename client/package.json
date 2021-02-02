@@ -1,0 +1,20 @@
+{
+  "name": "cyberia-client",
+  "license": "MIT",
+  "private": true,
+  "main": "index.js",
+  "targets": {
+    "main": false
+  },
+  "scripts": {
+    "clean": "rimraf .cache ../public",
+    "watch": "parcel watch --dist-dir ../public *.js",
+    "build": "parcel build --dist-dir ../public *.js"
+  },
+  "devDependencies": {
+    "parcel": "^2.0.0-nightly.566"
+  },
+  "dependencies": {
+    "sass": "^1.32.6"
+  }
+}

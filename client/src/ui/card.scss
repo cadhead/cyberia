@@ -1,0 +1,44 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid #494449;
+  border-bottom: 1px solid #494449;
+  box-shadow: 0 0 0 1px #494449;
+  background-color: #d1c7ce;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: .2rem;
+    padding: .2rem;
+    font-weight: 700;
+    color: #d1c7ce;
+    background-color: #847a8e;
+    border: 1px solid #494449;
+  }
+
+  &__controlls {
+    display: flex;
+
+    button {
+      margin-left: .25rem;
+      width: 20px;
+      height: 20px;
+      font-weight: 700;
+    }
+  }
+
+  &__body {
+    margin: .2rem;
+    border: 1px solid #494449;
+  }
+
+  &__content {
+    padding: .35rem;
+  }
+}

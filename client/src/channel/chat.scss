@@ -1,0 +1,56 @@
+$message-avatar-size: 30px;
+
+.chat {
+  &__buffer {
+    position: relative;
+    max-height: 50vh;
+    overflow-y: scroll;
+  }
+
+  &__message {
+    display: flex;
+    align-items: baseline;
+    align-content: center;
+    margin-bottom: .5rem;
+
+    .avatar {
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      width: $message-avatar-size;
+      height: $message-avatar-size;
+      background: #535653;
+      box-shadow: 3px 3px 0px 0px #494449;
+
+      &__dummy,
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: $message-avatar-size * 1.5;
+      }
+
+      &__dummy {
+        color: #e2dce8;
+        font-weight: 700;
+      }
+    }
+
+    .message {
+      padding-left: .65em;
+      align-self: center;
+
+      &__username {
+        font-weight: 700;
+        padding-right: .15em;
+      }
+
+      &__text {
+        p:first-child {
+          display: inline;
+        }
+      }
+    }
+  }
+}

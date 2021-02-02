@@ -1,0 +1,21 @@
+@import './src/common/font.css';
+@import './src/common/reset.css';
+@import './src/common/helpers.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Jura', sans-serif;
+  line-height: normal;
+  font-weight: 400;
+  padding: 1px;
+  margin: 0;
+  background-color: #b5b5da;
+}
+
+img {
+  max-width: 100%;
+}

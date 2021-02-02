@@ -1,0 +1,22 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0,0,0,0);
+  -webkit-clip-path: inset(100%);
+  clip-path: inset(100%);
+}
+
+@for $i from 0 through 10 {
+  .p-#{$i} {
+    padding: #{$i * .5}rem !important
+  }
+
+  .m-#{$i} {
+    margin: #{$i * .5}rem !important
+  }
+}
