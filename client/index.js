@@ -1,3 +1,3 @@
 import './index.scss';
-import './src/ui'
-import './src/channel'
+import './src/ui';
+import './src/channel';
