@@ -12,9 +12,11 @@
     "build": "parcel build --dist-dir ../public *.js"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-nightly.566"
+    "parcel": "^2.0.0-beta.1"
   },
   "dependencies": {
-    "sass": "^1.32.6"
+    "preact": "^10.5.12",
+    "sass": "^1.32.6",
+    "socket.io-client": "^3.1.0"
   }
 }

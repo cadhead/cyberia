@@ -10,11 +10,14 @@
     "node": "14.x"
   },
   "scripts": {
-    "dev:server:nodemon": "nodemon --ignore client -r esm index.js",
+    "dev:server:nodemon": "nodemon -r esm index.js",
     "dev:client:parcel-watch": "cd client && yarn watch",
     "buildclient": "cd client && yarn build",
     "start": "node -r esm index.js",
     "dev": "run-p dev:server:nodemon dev:client:parcel-watch"
+  },
+  "nodemonConfig": {
+    "ignore": ["client", "public"]
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
