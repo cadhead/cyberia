@@ -6,16 +6,29 @@
   "targets": {
     "main": false
   },
+  "browserslist": "> 0.2%",
+  "alias": {
+    "react": "preact-compat",
+    "react-dom": "preact-compat"
+  },
   "scripts": {
-    "clean": "rimraf .cache ../public",
+    "clean": "rimraf .parcel-cache ../public",
     "watch": "parcel watch --dist-dir ../public *.js",
-    "build": "parcel build --dist-dir ../public *.js"
+    "build": "yarn clean && parcel build --dist-dir ../public *.js --no-source-maps"
   },
   "devDependencies": {
+    "@babel/preset-react": "^7.12.13",
+    "@parcel/babel-plugin-transform-runtime": "^2.0.0-nightly.1823",
+    "babel-eslint": "^10.1.0",
+    "babel-preset-preact": "^2.0.0",
+    "eslint": "^7.19.0",
+    "eslint-config-preact": "^1.1.3",
+    "eslint-plugin-preact": "^0.1.0",
     "parcel": "^2.0.0-beta.1"
   },
   "dependencies": {
     "preact": "^10.5.12",
+    "preact-compat": "^3.19.0",
     "sass": "^1.32.6",
     "socket.io-client": "^3.1.0"
   }

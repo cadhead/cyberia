@@ -23,7 +23,8 @@ export class Chat {
 
     Object.assign(message, {
       text: validate(message.text),
-      user: socket.request.user
+      user: socket.request.user,
+      timestamp: Date.now()
     });
 
     this.sendMessage(socket, message);

@@ -14,12 +14,16 @@
     "dev:client:parcel-watch": "cd client && yarn watch",
     "buildclient": "cd client && yarn build",
     "start": "node -r esm index.js",
-    "dev": "run-p dev:server:nodemon dev:client:parcel-watch"
+    "dev": "run-p dev:client:parcel-watch dev:server:nodemon"
   },
   "nodemonConfig": {
-    "ignore": ["client", "public"]
+    "ignore": [
+      "client",
+      "public"
+    ]
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.3",
     "debug": "^4.3.1",

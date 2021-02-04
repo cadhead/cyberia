@@ -4,6 +4,7 @@ $message-avatar-size: 30px;
   &__buffer {
     position: relative;
     max-height: 50vh;
+    overflow-x: hidden;
     overflow-y: scroll;
   }
 
@@ -47,8 +48,11 @@ $message-avatar-size: 30px;
       }
 
       &__text {
-        p:first-child {
-          display: inline;
+        p {
+          word-break: break-all;
+          &:first-child {
+            display: inline;
+          }
         }
       }
     }
