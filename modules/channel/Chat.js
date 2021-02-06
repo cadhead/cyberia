@@ -18,14 +18,15 @@ export class Chat {
     this.channel.broadcast(socket, EVENT_CHAT_USER_MESSAGE, message, false);
   }
 
-  handleMessage(socket, message) {
+  handleMessage(socket, data) {
     if (!socket.request.user) return;
+    if (!data.text) return;
 
-    Object.assign(message, {
-      text: validate(message.text),
+    const message = {
+      text: validate(data.text),
       user: socket.request.user,
       timestamp: Date.now()
-    });
+    }
 
     this.sendMessage(socket, message);
   }

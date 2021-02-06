@@ -4,39 +4,45 @@ import ChatMessage from './chat-message';
 
 export default class ChatBuffer extends Component {
   state = {
-    messages: []
+    messages: [
+      {
+        user: {
+          username: 'Lain Iwakura',
+          avatar: 'https://i.imgur.com/C4KNuj4.png'
+        },
+        text: 'You must be logged in for connect to this layer.'
+      }
+    ]
   }
 
   componentDidMount() {
     this.channel.on('chat', (message) => {
-      this.setState({ messages: this.formatMessages(message) });
+      this.setState({
+        messages: this.formatMessages(message)
+      });
     });
   }
 
   formatMessages(message) {
     const { messages } = this.state;
-    const lastMessage = messages[messages.length - 1];
-    const isSameUser = lastMessage
-      ? (lastMessage.user.username === message.user.username)
-      : false;
 
-    if (!isSameUser) {
-      messages.push(message);
-    } else {
-      lastMessage.timestamp = message.timestamp;
-      lastMessage.text.push(...message.text);
-    }
+    messages.push(message);
 
     return messages;
   }
 
+  getLastChat(message) {
+    const before = this.state.messages[this.state.messages.indexOf(message) - 1];
+
+    return before ? before.user.username : null;
+  }
+
   displayMessages() {
-    return this.state.messages.map(({ user, text, timestamp }, index) => (
+    return this.state.messages.map((message, index) => (
       <ChatMessage
         key={index}
-        user={user}
-        message={text}
-        timestamp={timestamp}
+        message={message}
+        lastChat = {this.getLastChat(message)}
       />
     ));
   }
@@ -49,7 +55,7 @@ export default class ChatBuffer extends Component {
         {
           this.state.messages.length
             ? this.displayMessages()
-            : 'Nobody leave a sign this layer.'
+            : ''
         }
       </div>
     );

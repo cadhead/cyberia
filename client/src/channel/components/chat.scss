@@ -1,4 +1,4 @@
-$message-avatar-size: 30px;
+$message-avatar-size: 2em;
 
 .chat {
   &__buffer {
@@ -10,18 +10,21 @@ $message-avatar-size: 30px;
 
   &__message {
     display: flex;
+    position: relative;
     align-items: baseline;
     align-content: center;
     margin-bottom: .5rem;
 
     .avatar {
       flex-shrink: 0;
-      position: relative;
-      overflow: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
       width: $message-avatar-size;
       height: $message-avatar-size;
-      background: #535653;
-      box-shadow: 3px 3px 0px 0px #494449;
+      background: #2a5f55;
+      box-shadow: 3px 3px 0px 0px #2a0000;
+      overflow: hidden;
 
       &__dummy,
       img {
@@ -39,20 +42,19 @@ $message-avatar-size: 30px;
     }
 
     .message {
-      padding-left: .65em;
+      padding-left: .75em + $message-avatar-size;
       align-self: center;
 
       &__username {
         font-weight: 700;
-        padding-right: .15em;
+        padding-right: .75em;
       }
 
       &__text {
+        display: inline-flex;
+        justify-content: baseline;
         p {
           word-break: break-all;
-          &:first-child {
-            display: inline;
-          }
         }
       }
     }
