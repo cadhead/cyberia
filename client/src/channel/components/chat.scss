@@ -22,6 +22,7 @@ $message-avatar-size: 2em;
       left: 0;
       width: $message-avatar-size;
       height: $message-avatar-size;
+      min-height: $message-avatar-size;
       background: #2a5f55;
       box-shadow: 3px 3px 0px 0px #2a0000;
       overflow: hidden;
@@ -46,13 +47,14 @@ $message-avatar-size: 2em;
       align-self: center;
 
       &__username {
+        display: inline-block;
         font-weight: 700;
         padding-right: .75em;
+        padding-bottom: .5rem;
       }
 
       &__text {
-        display: inline-flex;
-        justify-content: baseline;
+        display: flex;
         p {
           word-break: break-all;
         }

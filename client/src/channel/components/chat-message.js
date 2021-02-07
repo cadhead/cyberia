@@ -11,9 +11,12 @@ export default class ChatMessage extends Component {
     return (<div class="chat__message">
       <div class="avatar">{this.avatar()}</div>
       <div class="message">
-        <span class="message__username">{user.username}</span>
+        <div>
+          <span class="message__username">{user.username}</span>
+          <span class="message__timestamp">{this.date()}</span>
+        </div>
         <span class="message__text">
-          <p>{text} {this.date()}</p>
+          <p>{text}</p>
         </span>
       </div>
     </div>);
@@ -25,7 +28,7 @@ export default class ChatMessage extends Component {
     return (<div class="chat__message">
       <div class="message">
         <span class="message__text">
-          <p>{text} {this.date()}</p>
+          <p>{text}</p>
         </span>
       </div>
     </div>);
@@ -43,7 +46,7 @@ export default class ChatMessage extends Component {
     const { timestamp } = this.props.message;
 
     return timestamp
-      ? <small>({new Date(timestamp).toLocaleTimeString()})</small>
+      ? <small>{new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</small>
       : '';
   }
 
