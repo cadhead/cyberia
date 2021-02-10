@@ -19,17 +19,15 @@ export default class ChannelModule {
   static registerEvents(channel) {
     const { name, manager, chat } = channel;
     io.of('/layer/' + name).on('connection', (socket) => {
+      socket.emit('channel data', {
+        chatbuffer: chat.buffer,
+        online: manager.online
+      });
+
       socket.on(EVENT_CHAT_USER_MESSAGE, chat.handleMessage.bind(chat, socket));
 
       socket.on(EVENT_CHANNEL_USER_JOIN, manager.handleUserJoin.bind(manager, socket));
       socket.on('disconnect', manager.handleUserLeave.bind(manager, socket));
-
-      setInterval(() => {
-        socket.emit('channel data', {
-          chatbuffer: chat.buffer,
-          online: manager.online
-        });
-      }, 500);
     });
   }
 

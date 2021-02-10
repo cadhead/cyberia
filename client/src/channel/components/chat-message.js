@@ -2,34 +2,41 @@ import { h, Component } from 'preact';
 
 export default class ChatMessage extends Component {
   componentDidUpdate() {
-    this.scrollToLastMessage();
+    this.scrollIntoView();
   }
 
-  renderMessageFull() {
+  componentWillUnmount() {
+    this.scrollIntoView();
+  }
+
+  componentDidMount() {
+    setTimeout(this.scrollIntoView.bind(this), 10);
+  }
+
+  renderFull() {
     const { user, text } = this.props.message;
 
     return (<div class="chat__message">
       <div class="avatar">{this.avatar()}</div>
       <div class="message">
-        <div>
-          <span class="message__username">{user.username}</span>
-          <span class="message__timestamp">{this.date()}</span>
-        </div>
+        <span class="message__username">{user.username}</span>
+        <span class="message__timestamp">{this.date()}</span>
         <span class="message__text">
-          <p>{text}</p>
+          <p innerHTML={ text } />
         </span>
       </div>
     </div>);
   }
 
-  renderMessagePartial() {
+  renderPartial() {
     const { text } = this.props.message;
 
     return (<div class="chat__message">
       <div class="message">
         <span class="message__text">
-          <p>{text}</p>
+          <p innerHTML={text} />
         </span>
+        <span class="message__timestamp">{this.date()}</span>
       </div>
     </div>);
   }
@@ -50,18 +57,15 @@ export default class ChatMessage extends Component {
       : '';
   }
 
-  scrollToLastMessage() {
-    const lastMessagePart = this.base.lastChild
-      .querySelector('.message__text p');
-
-    lastMessagePart.scrollIntoView();
+  scrollIntoView() {
+    this.base.scrollIntoView();
   }
 
   render() {
     const { user } = this.props.message;
 
     return this.props.lastChat !== user.username
-      ? this.renderMessageFull()
-      : this.renderMessagePartial();
+      ? this.renderFull()
+      : this.renderPartial();
   }
 }

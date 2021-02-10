@@ -9,11 +9,10 @@ $message-avatar-size: 2em;
   }
 
   &__message {
-    display: flex;
     position: relative;
     align-items: baseline;
     align-content: center;
-    margin-bottom: .5rem;
+    margin-bottom: .35rem;
 
     .avatar {
       flex-shrink: 0;
@@ -50,14 +49,23 @@ $message-avatar-size: 2em;
         display: inline-block;
         font-weight: 700;
         padding-right: .75em;
-        padding-bottom: .5rem;
+        padding-bottom: .35rem;
       }
 
       &__text {
         display: flex;
+        padding-right: 32px;
         p {
           word-break: break-all;
         }
+      }
+
+      &__timestamp {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: .4;
       }
     }
   }

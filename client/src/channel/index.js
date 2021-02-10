@@ -8,6 +8,7 @@ import {
   EVENT_CHANNEL_USER_LEAVE
 } from '../../../modules/channel/events';
 import Chat from './components/chat-buffer';
+import Emotes from './Emotes';
 
 const { pathname } = window.location;
 const LainIwakura = {
@@ -22,15 +23,21 @@ export default class Channel extends EventEmitter {
 
   static chatBufferElement = document.querySelector('#chatbuffer');
 
+  personalEmotes = []
+
+  data = {}
+
   constructor() {
     super();
 
     this.socket = io(pathname);
 
     this.registerEvents();
+    this.emotes = new Emotes(this);
   }
 
   registerEvents() {
+    this.socket.on('channel data', this.handleRecivedData.bind(this));
     this.socket.on('connect', this.handleConnect.bind(this));
     this.socket.on(EVENT_CHANNEL_USER_JOIN, this.handleJoin.bind(this));
     this.socket.on(EVENT_CHANNEL_USER_LEAVE, this.handleLeave.bind(this));
@@ -57,12 +64,26 @@ export default class Channel extends EventEmitter {
 
   handleConnect() {
     render(<Chat channel={this} />, Channel.chatBufferElement);
+    this.emit('load emotes', [
+      { name: 'dnb', aliases: [], content: 'http://i.imgur.com/wWLVmRV.gif' }
+    ]);
+  }
+
+  handleRecivedData(data) {
+    this.data = data;
+
+    const { chatbuffer } = this.data;
+
+    chatbuffer.forEach(message => {
+      this.emit('chat', message);
+    });
   }
 
   handleLeave(user) {
     this.emit('chat', {
       user: LainIwakura,
-      text: [`${user.username} not with us for now.`]
+      text: [`${user.username} not with us for now.`],
+      timestamp: Date.now()
     });
   }
 
@@ -82,13 +103,14 @@ export default class Channel extends EventEmitter {
 
     this.emit('chat', {
       user: LainIwakura,
-      text: [wellcomeMessage]
+      text: wellcomeMessage,
+      timestamp: Date.now()
     });
   }
 
   handleChatMessage(message) {
     Object.assign(message, {
-      text: [message.text]
+      text: message.text
     }, message);
 
     this.emit('chat', message);

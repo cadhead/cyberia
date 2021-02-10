@@ -4,27 +4,29 @@ import ChatMessage from './chat-message';
 
 export default class ChatBuffer extends Component {
   state = {
-    messages: [
-      {
-        user: {
-          username: 'Lain Iwakura',
-          avatar: 'https://i.imgur.com/C4KNuj4.png'
-        },
-        text: 'You must be logged in for connect to this layer.'
-      }
-    ]
+    messages: []
   }
 
   componentDidMount() {
-    this.channel.on('chat', (message) => {
-      this.setState({
-        messages: this.formatMessages(message)
-      });
+    this.channel.on('chat', this.addMessage.bind(this));
+    this.channel.on('chat update', this.addMessage.bind(this));
+  }
+
+  addMessage(message) {
+    this.setState({
+      messages: this.formatMessages(message)
     });
   }
 
   formatMessages(message) {
     const { messages } = this.state;
+
+    let formatedText = message.text;
+    formatedText = this.channel.emotes.parse(formatedText);
+
+    Object.assign(message, {
+      text: formatedText
+    }, message);
 
     messages.push(message);
 
