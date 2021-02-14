@@ -10,6 +10,6 @@ const controllers = [
   render
 ];
 
-channel.get('/layer/:channelName', ...controllers);
+channel.get('/l/:channelName', ...controllers);
 
 export default channel;
