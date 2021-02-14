@@ -25,7 +25,9 @@ export default class Channel extends EventEmitter {
 
   personalEmotes = []
 
-  data = {}
+  data = {
+    chatbuffer: []
+  }
 
   constructor() {
     super();
@@ -72,17 +74,13 @@ export default class Channel extends EventEmitter {
   handleRecivedData(data) {
     this.data = data;
 
-    const { chatbuffer } = this.data;
-
-    chatbuffer.forEach(message => {
-      this.emit('chat', message);
-    });
+    this.emit('chat');
   }
 
   handleLeave(user) {
-    this.emit('chat', {
+    this.handleChatMessage({
       user: LainIwakura,
-      text: [`${user.username} not with us for now.`],
+      text: `${user.username} not with us for now.`,
       timestamp: Date.now()
     });
   }
@@ -101,7 +99,7 @@ export default class Channel extends EventEmitter {
       }
     }
 
-    this.emit('chat', {
+    this.handleChatMessage({
       user: LainIwakura,
       text: wellcomeMessage,
       timestamp: Date.now()
@@ -110,9 +108,11 @@ export default class Channel extends EventEmitter {
 
   handleChatMessage(message) {
     Object.assign(message, {
-      text: message.text
+      text: this.emotes.parse(message.text)
     }, message);
 
-    this.emit('chat', message);
+    this.data.chatbuffer.push(message);
+
+    this.emit('chat');
   }
 }

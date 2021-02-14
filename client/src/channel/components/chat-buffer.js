@@ -8,29 +8,13 @@ export default class ChatBuffer extends Component {
   }
 
   componentDidMount() {
-    this.channel.on('chat', this.addMessage.bind(this));
-    this.channel.on('chat update', this.addMessage.bind(this));
+    this.channel.on('chat', this.update.bind(this));
   }
 
-  addMessage(message) {
+  update() {
     this.setState({
-      messages: this.formatMessages(message)
+      messages: this.channel.data.chatbuffer
     });
-  }
-
-  formatMessages(message) {
-    const { messages } = this.state;
-
-    let formatedText = message.text;
-    formatedText = this.channel.emotes.parse(formatedText);
-
-    Object.assign(message, {
-      text: formatedText
-    }, message);
-
-    messages.push(message);
-
-    return messages;
   }
 
   getLastChat(message) {

@@ -26,7 +26,7 @@ export class Chat {
       text: validate(data.text),
       user: socket.request.user,
       timestamp: Date.now()
-    }
+    };
 
     this.sendMessage(socket, message);
   }
