@@ -4,7 +4,7 @@ import './src/ui';
 const currentRoute = window.location.pathname.split('/')[1];
 
 (async function apply() {
-  if (currentRoute === 'layer') {
+  if (currentRoute === 'l') {
     const Channel = (await import('./src/channel')).default;
 
     // eslint-disable-next-line no-new

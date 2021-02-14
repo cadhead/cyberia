@@ -1,4 +1,4 @@
-import { io } from '../../socket.io-server';
+import { io, config as ioConfig } from '../../socket.io-server';
 import { Channel } from '../../models/Channel';
 import { Chat } from './Chat';
 import { ChannelManager } from './Manager';
@@ -18,7 +18,7 @@ export default class ChannelModule {
 
   static registerEvents(channel) {
     const { name, manager, chat } = channel;
-    io.of('/layer/' + name).on('connection', (socket) => {
+    io.of(ioConfig.routes.channel + name).on('connection', (socket) => {
       socket.emit('channel data', {
         chatbuffer: chat.buffer,
         online: manager.online
