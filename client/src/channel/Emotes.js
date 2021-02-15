@@ -13,7 +13,7 @@ export default class Emotes {
     emotes.forEach(emote => {
       const { name, aliases = [], content } = emote;
 
-      if (this.buffer[emote]) return;
+      if (this.buffer[name]) return;
 
       Object.defineProperty(this.buffer, name, {
         value: { aliases, content },
