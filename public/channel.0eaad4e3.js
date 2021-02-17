@@ -434,6 +434,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
 var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
 
 var _createClass2 = _interopRequireDefault(require("@babel/runtime/helpers/createClass"));
@@ -482,8 +484,11 @@ var Channel = /*#__PURE__*/function (_EventEmitter) {
 
     (0, _classCallCheck2.default)(this, Channel);
     _this = _super.call(this);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "personalEmotes", []);
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "data", {});
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "data", {
+      chatbuffer: [],
+      emotes: [],
+      online: 0
+    });
     _this.socket = (0, _socket.default)(pathname);
 
     _this.registerEvents();
@@ -497,7 +502,6 @@ var Channel = /*#__PURE__*/function (_EventEmitter) {
     value: function registerEvents() {
       var _this2 = this;
 
-      this.socket.on('channel data', this.handleRecivedData.bind(this));
       this.socket.on('connect', this.handleConnect.bind(this));
       this.socket.on(_events2.EVENT_CHANNEL_USER_JOIN, this.handleJoin.bind(this));
       this.socket.on(_events2.EVENT_CHANNEL_USER_LEAVE, this.handleLeave.bind(this));
@@ -529,34 +533,50 @@ var Channel = /*#__PURE__*/function (_EventEmitter) {
       };
     }
   }, {
+    key: "updateEmotes",
+    value: function updateEmotes(data) {
+      var emotes = data.emotes;
+      if (!emotes || emotes === this.data.emotes) return;
+      this.data.emotes = [].concat((0, _toConsumableArray2.default)(this.data.emotes), [emotes]);
+      this.emit('load emotes', emotes);
+    }
+  }, {
+    key: "loadChatbuffer",
+    value: function loadChatbuffer(data) {
+      var _this3 = this;
+
+      var chatbuffer = data.chatbuffer;
+      this.data.chatbuffer = chatbuffer.map(function (message) {
+        return _this3.prepareChatMessage(message);
+      });
+      this.emit('chat');
+    }
+  }, {
+    key: "prepareChatMessage",
+    value: function prepareChatMessage(message) {
+      Object.assign(message, {
+        text: this.emotes.parse(message.text)
+      }, message);
+      return message;
+    }
+  }, {
     key: "handleConnect",
     value: function handleConnect() {
+      var _this4 = this;
+
       (0, _preact.render)((0, _preact.h)(_chatBuffer.default, {
         channel: this
       }), Channel.chatBufferElement);
-      this.emit('load emotes', [{
-        name: 'dnb',
-        aliases: [],
-        content: 'http://i.imgur.com/wWLVmRV.gif'
-      }]);
-    }
-  }, {
-    key: "handleRecivedData",
-    value: function handleRecivedData(data) {
-      var _this3 = this;
-
-      this.data = data;
-      var chatbuffer = this.data.chatbuffer;
-      chatbuffer.forEach(function (message) {
-        _this3.emit('chat', message);
+      this.socket.on('update channel data', function (data) {
+        return [_this4.updateEmotes(data), _this4.loadChatbuffer(data)];
       });
     }
   }, {
     key: "handleLeave",
     value: function handleLeave(user) {
-      this.emit('chat', {
+      this.handleChatMessage({
         user: LainIwakura,
-        text: ["".concat(user.username, " not with us for now.")],
+        text: "".concat(user.username, " not with us for now."),
         timestamp: Date.now()
       });
     }
@@ -577,7 +597,7 @@ var Channel = /*#__PURE__*/function (_EventEmitter) {
         }
       }
 
-      this.emit('chat', {
+      this.handleChatMessage({
         user: LainIwakura,
         text: wellcomeMessage,
         timestamp: Date.now()
@@ -586,10 +606,8 @@ var Channel = /*#__PURE__*/function (_EventEmitter) {
   }, {
     key: "handleChatMessage",
     value: function handleChatMessage(message) {
-      Object.assign(message, {
-        text: message.text
-      }, message);
-      this.emit('chat', message);
+      this.data.chatbuffer = [].concat((0, _toConsumableArray2.default)(this.data.chatbuffer), [this.prepareChatMessage(message)]);
+      this.emit('chat');
     }
   }]);
   return Channel;
@@ -599,7 +617,67 @@ exports.default = Channel;
 (0, _defineProperty2.default)(Channel, "usernameField", document.querySelector('#chatusername'));
 (0, _defineProperty2.default)(Channel, "chatinputField", document.querySelector('#chatinput'));
 (0, _defineProperty2.default)(Channel, "chatBufferElement", document.querySelector('#chatbuffer'));
-},{"@babel/runtime/helpers/classCallCheck":"b8768c02cae9f0078cdfdb1d022dcd6c","@babel/runtime/helpers/createClass":"6a309ec355ffbbe69db48a6cdee411b6","@babel/runtime/helpers/assertThisInitialized":"9712c9011863b49d2640367e5d856b81","@babel/runtime/helpers/inherits":"30a9892d14f7f21d5ecbc23b5d08d52b","@babel/runtime/helpers/possibleConstructorReturn":"a7f211951ad4062fde680c01d4a8c1e6","@babel/runtime/helpers/getPrototypeOf":"a77f156ace6456be56afdd18a985b6b6","@babel/runtime/helpers/defineProperty":"46fe1dd13e2661a85cf9eedeed47b15d","preact":"74e5ee5f21cd0add63c84ac608bf4ae7","events":"e91a44e7c54c787e39a6796674e2d77c","socket.io-client":"7f37024bf0157df10fa59904a3e79c4d","../../../modules/channel/events":"e575adec32d4045c690b8eaa965b74bd","./components/chat-buffer":"60424b07a8baf02b2146312f49005bad","./Emotes":"d1e31d93cb7e8c00988d2b6b44e6981c"}],"b8768c02cae9f0078cdfdb1d022dcd6c":[function(require,module,exports) {
+(0, _defineProperty2.default)(Channel, "mediaBufferElement", document.querySelector('#mediabuffer'));
+},{"@babel/runtime/helpers/toConsumableArray":"f6ff3eac5023a805901535cadbe6f94a","@babel/runtime/helpers/classCallCheck":"b8768c02cae9f0078cdfdb1d022dcd6c","@babel/runtime/helpers/createClass":"6a309ec355ffbbe69db48a6cdee411b6","@babel/runtime/helpers/assertThisInitialized":"9712c9011863b49d2640367e5d856b81","@babel/runtime/helpers/inherits":"30a9892d14f7f21d5ecbc23b5d08d52b","@babel/runtime/helpers/possibleConstructorReturn":"a7f211951ad4062fde680c01d4a8c1e6","@babel/runtime/helpers/getPrototypeOf":"a77f156ace6456be56afdd18a985b6b6","@babel/runtime/helpers/defineProperty":"46fe1dd13e2661a85cf9eedeed47b15d","preact":"74e5ee5f21cd0add63c84ac608bf4ae7","events":"e91a44e7c54c787e39a6796674e2d77c","socket.io-client":"7f37024bf0157df10fa59904a3e79c4d","../../../modules/channel/events":"e575adec32d4045c690b8eaa965b74bd","./components/chat-buffer":"60424b07a8baf02b2146312f49005bad","./Emotes":"d1e31d93cb7e8c00988d2b6b44e6981c"}],"f6ff3eac5023a805901535cadbe6f94a":[function(require,module,exports) {
+var arrayWithoutHoles = require("./arrayWithoutHoles");
+
+var iterableToArray = require("./iterableToArray");
+
+var unsupportedIterableToArray = require("./unsupportedIterableToArray");
+
+var nonIterableSpread = require("./nonIterableSpread");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+},{"./arrayWithoutHoles":"f8cd4ffdb369f9b4b778263648b97f64","./iterableToArray":"25b1d5a21aa438a68967325ccddd2b7d","./unsupportedIterableToArray":"c429161e14eea39622c562acc1c99d04","./nonIterableSpread":"4c2aa80a79d9343aaca4b8b5099f2d4e"}],"f8cd4ffdb369f9b4b778263648b97f64":[function(require,module,exports) {
+var arrayLikeToArray = require("./arrayLikeToArray");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+},{"./arrayLikeToArray":"f73a3072624adeeb3a91f47530c8c177"}],"f73a3072624adeeb3a91f47530c8c177":[function(require,module,exports) {
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+},{}],"25b1d5a21aa438a68967325ccddd2b7d":[function(require,module,exports) {
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+},{}],"c429161e14eea39622c562acc1c99d04":[function(require,module,exports) {
+var arrayLikeToArray = require("./arrayLikeToArray");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+},{"./arrayLikeToArray":"f73a3072624adeeb3a91f47530c8c177"}],"4c2aa80a79d9343aaca4b8b5099f2d4e":[function(require,module,exports) {
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+},{}],"b8768c02cae9f0078cdfdb1d022dcd6c":[function(require,module,exports) {
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -8190,27 +8268,14 @@ var ChatBuffer = /*#__PURE__*/function (_Component) {
   (0, _createClass2.default)(ChatBuffer, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.channel.on('chat', this.addMessage.bind(this));
-      this.channel.on('chat update', this.addMessage.bind(this));
+      this.channel.on('chat', this.update.bind(this));
     }
   }, {
-    key: "addMessage",
-    value: function addMessage(message) {
+    key: "update",
+    value: function update() {
       this.setState({
-        messages: this.formatMessages(message)
+        messages: this.channel.data.chatbuffer
       });
-    }
-  }, {
-    key: "formatMessages",
-    value: function formatMessages(message) {
-      var messages = this.state.messages;
-      var formatedText = message.text;
-      formatedText = this.channel.emotes.parse(formatedText);
-      Object.assign(message, {
-        text: formatedText
-      }, message);
-      messages.push(message);
-      return messages;
     }
   }, {
     key: "getLastChat",
@@ -8389,7 +8454,6 @@ var Emotes = /*#__PURE__*/function () {
     (0, _classCallCheck2.default)(this, Emotes);
     (0, _defineProperty2.default)(this, "buffer", {});
     this.channel = channel;
-    this.add(this.channel.personalEmotes);
     this.channel.on('load emotes', this.add.bind(this));
   }
 
@@ -8403,7 +8467,7 @@ var Emotes = /*#__PURE__*/function () {
             _emote$aliases = emote.aliases,
             aliases = _emote$aliases === void 0 ? [] : _emote$aliases,
             content = emote.content;
-        if (_this.buffer[emote]) return;
+        if (_this.buffer[name]) return;
         Object.defineProperty(_this.buffer, name, {
           value: {
             aliases: aliases,

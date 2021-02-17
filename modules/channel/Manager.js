@@ -4,11 +4,14 @@ import {
 } from './events';
 
 import { User } from '../../models/User';
+import { Emote } from '../../models/Emote';
 
 export class ChannelManager {
   constructor(channel) {
     this.channel = channel;
     this.users = new Set();
+
+    this.initializeEmotes();
   }
 
   get online() {
@@ -19,6 +22,13 @@ export class ChannelManager {
     return key in this.channel
       ? this.channel[key]
       : this.channel;
+  }
+
+  initializeEmotes() {
+    const publicEmotes = Emote.findPublic();
+    const channelEmote = Emote.findByChannel(this.get('name'));
+
+    this.emotes = [...publicEmotes, ...channelEmote];
   }
 
   // eslint-disable-next-line class-methods-use-this

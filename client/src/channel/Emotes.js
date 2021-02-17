@@ -4,8 +4,6 @@ export default class Emotes {
   constructor(channel) {
     this.channel = channel;
 
-    this.add(this.channel.personalEmotes);
-
     this.channel.on('load emotes', this.add.bind(this));
   }
 

@@ -19,9 +19,10 @@ export default class ChannelModule {
   static registerEvents(channel) {
     const { name, manager, chat } = channel;
     io.of(ioConfig.routes.channel + name).on('connection', (socket) => {
-      socket.emit('channel data', {
+      socket.emit('update channel data', {
         chatbuffer: chat.buffer,
-        online: manager.online
+        online: manager.online,
+        emotes: manager.emotes
       });
 
       socket.on(EVENT_CHAT_USER_MESSAGE, chat.handleMessage.bind(chat, socket));

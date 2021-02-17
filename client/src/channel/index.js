@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import { h, render } from 'preact';
 import { EventEmitter } from 'events';
 import io from 'socket.io-client';
@@ -23,10 +22,12 @@ export default class Channel extends EventEmitter {
 
   static chatBufferElement = document.querySelector('#chatbuffer');
 
-  personalEmotes = []
+  static mediaBufferElement = document.querySelector('#mediabuffer');
 
   data = {
-    chatbuffer: []
+    chatbuffer: [],
+    emotes: [],
+    online: 0
   }
 
   constructor() {
@@ -39,7 +40,6 @@ export default class Channel extends EventEmitter {
   }
 
   registerEvents() {
-    this.socket.on('channel data', this.handleRecivedData.bind(this));
     this.socket.on('connect', this.handleConnect.bind(this));
     this.socket.on(EVENT_CHANNEL_USER_JOIN, this.handleJoin.bind(this));
     this.socket.on(EVENT_CHANNEL_USER_LEAVE, this.handleLeave.bind(this));
@@ -64,17 +64,38 @@ export default class Channel extends EventEmitter {
     };
   }
 
-  handleConnect() {
-    render(<Chat channel={this} />, Channel.chatBufferElement);
-    this.emit('load emotes', [
-      { name: 'dnb', aliases: [], content: 'http://i.imgur.com/wWLVmRV.gif' }
-    ]);
+  updateEmotes(data) {
+    const { emotes } = data;
+
+    if (!emotes || emotes === this.data.emotes) return;
+
+    this.data.emotes = [...this.data.emotes, emotes];
+    this.emit('load emotes', emotes);
   }
 
-  handleRecivedData(data) {
-    this.data = data;
+  loadChatbuffer(data) {
+    const { chatbuffer } = data;
+
+    this.data.chatbuffer = chatbuffer.map(message => this.prepareChatMessage(message));
 
     this.emit('chat');
+  }
+
+  prepareChatMessage(message) {
+    Object.assign(message, {
+      text: this.emotes.parse(message.text)
+    }, message);
+
+    return message;
+  }
+
+  handleConnect() {
+    render(<Chat channel={this} />, Channel.chatBufferElement);
+
+    this.socket.on('update channel data', (data) => [
+      this.updateEmotes(data),
+      this.loadChatbuffer(data)
+    ]);
   }
 
   handleLeave(user) {
@@ -107,11 +128,10 @@ export default class Channel extends EventEmitter {
   }
 
   handleChatMessage(message) {
-    Object.assign(message, {
-      text: this.emotes.parse(message.text)
-    }, message);
-
-    this.data.chatbuffer.push(message);
+    this.data.chatbuffer = [
+      ...this.data.chatbuffer,
+      this.prepareChatMessage(message)
+    ];
 
     this.emit('chat');
   }

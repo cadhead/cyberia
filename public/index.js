@@ -474,7 +474,7 @@ var currentRoute = window.location.pathname.split('/')[1];
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            if (!(currentRoute === 'layer')) {
+            if (!(currentRoute === 'l')) {
               _context.next = 5;
               break;
             }
