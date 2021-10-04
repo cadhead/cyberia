@@ -1,0 +1,13 @@
+extends layouts/default.pug
+block content
+  - const images = ['Lain404-1.png', 'Lain404-2.png'];
+  - const Image404 = images[Math.floor(Math.random() * images.length)];
+
+  .Box 
+    .Box__content
+      center
+        img(src=`/assets/${Image404}` alt="sad lain, shes realy care, shes realy sorry")
+        h1.title=page.error.status
+        p.description=page.error.message
+block footer 
+  include parts/footer

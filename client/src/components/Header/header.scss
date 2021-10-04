@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+
+.Header {
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 0 0 20px -5px darken($color-secondary, 20);
+  backdrop-filter: blur(100px);
+}
+
+.MiniProfile {
+  padding: 1rem 0;
+}

@@ -1,0 +1,36 @@
+- const groups = ['User', 'Room admin', 'Moder', 'Supermoder', 'Admin'];
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    style @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+    link(rel="stylesheet", href="/builds/index.css")
+    title=page.title
+  body
+    .Wrapper
+      .Header
+        block navbar
+          nav.Navbar#mainNav
+            include ../parts/navbar
+        .Container
+          if !user.username
+            .PromoteButton
+              a(href="/login").Button--success.lg
+                p.title Join to the wired
+                p.description We are all connected
+              a(href="/login").Button--danger.lg
+                p.title Join to the wired
+                p.description We are all connected
+          else
+            .MiniProfile
+              span=`Hello, ${user.username} [You are ${groups[user.group] || groups[groups.length-1]}]`
+      .Container
+        block content
+        block footer
+
+    block scripts
+      script(src="/builds/index.js")
+  

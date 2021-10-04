@@ -1,0 +1,61 @@
+@import "../../variables.scss";
+
+.Chat__Message {
+  display: flex;
+  flex-direction: row;
+
+  padding: 0.5rem;
+
+  .ChatMessage {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    width: 100%;
+    padding-left: 0.5rem;
+    margin-left: 0.5rem;
+
+    background: darken($color-secondary, 5);
+    border-radius: 0.5rem;
+
+    overflow: hidden;
+
+    &__Username,
+    &__Timestamp,
+    &__Text {
+      padding: 5px;
+    }
+
+    &__Username {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    &__Timestamp {
+      font-size: 12px;
+      align-self: center;
+      opacity: 0.5;
+      cursor: help;
+    }
+
+    &__Text {
+      width: 100%;
+
+      word-break: break-word;
+
+      background: $color-secondary;
+      border-top-left-radius: 0.5rem;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
+    }
+
+    &__CustomImage {
+      max-width: 100%;
+      max-height: 100%;
+      padding: 0.2rem;
+      margin: 0.2rem 0;
+      border: 1px dotted $color-primary;
+    }
+  }
+}

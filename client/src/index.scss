@@ -1,0 +1,181 @@
+@import "variables.scss";
+@import "./common/helpers/spacing.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html,
+.Wrapper {
+  font-size: 16px;
+  font-family: 'Roboto',BlinkMacSystemFont,-apple-system,"Segoe UI",Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1.45;
+  font-weight: 400;
+
+  width: 100%;
+  height: 100%;
+
+  color: $text_primary;
+  background: $background_page;
+  background-size: contain;
+  background-position: center top;
+  background-attachment: fixed;
+
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  border: unset;
+  background: unset;
+  border-bottom: 1px dashed $color-primary;
+}
+
+p {
+  line-height: 1.45;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: underline;
+  color: $text-primary;
+
+  &:hover {
+    color: lighten($color-primary, 10);
+  }
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid $color-primary;
+
+  th, td {
+    padding: 0.5rem;
+    border: 1px solid $color-primary;
+  }
+
+  th {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.title,
+.description {
+  margin: 0;
+  padding: 0;
+  line-height: 1.45;
+}
+
+.title {
+  font-size: 125%;
+}
+
+h1 {
+  &.title {
+    font-size: 5rem;
+    font-weight: 300;
+  }
+}
+
+h2 {
+  &.title {
+    font-size: 4rem;
+    font-weight: 300;
+  }
+}
+
+button {
+  font-size: inherit;
+  color: inherit;
+  background: unset;
+  border: unset;
+}
+
+.Wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 0;
+
+  background: $background_container;
+
+  &--room {
+    @extend .Container;
+
+    flex-direction: row;
+
+    height: 100%;
+    max-width: 100%;
+    padding: 1rem;
+
+    overflow: hidden;
+  }
+}
+
+.Box {
+  position: relative;
+
+  text-align: left;
+
+  background-color: $background_Box;
+  border-radius: 7px;
+  backdrop-filter: blur(11px);
+  box-shadow: 0 0 6px 0px darken($color-secondary, 6);
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+
+    &.center {
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+    }
+  }
+}
+
+.Scroll {
+  margin-right: -24px;
+  padding-right: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+a.username {
+  font-weight: bold;
+  color: lighten($color-primary, 40);
+  text-decoration: none;
+    
+  &:before {
+    content: "\f1fa";
+    font-size: 14px;
+    font-family: 'Font Awesome 5 Free';
+    padding-right: 1px;
+  }
+    
+  &:hover {
+    color: lighten($color-primary, 50);
+  }
+}
+

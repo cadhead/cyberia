@@ -1,0 +1,13 @@
+.Footer
+  .Box.p-2(style="width: 300px").mb-5
+    | Powered by 
+    a(href="/") cyberia
+    |  ©#{new Date().getFullYear()}
+    p Source code available on 
+      a(href="https://github.com/cadhead/cyberia" target="blank") Github
+      img(src="https://i.imgur.com/qiPEXI4.png" style="width: 20px; height: auto" alt="lain love emote" title=":lain_love:").ml-1
+  if !user.username
+    a(href="/login").Button--dark.sm.mr-2 Login
+    a(href="#/registration").Button--dark.sm.mr-2 Registration
+  a(href="#/about").Button--dark.sm.mr-2 About
+  a(href="#/policy").Button--dark.sm.mr-2 Terms of use

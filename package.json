@@ -1,0 +1,53 @@
+{
+  "name": "cyberia",
+  "description": "Online media synchronizer",
+  "version": "0.0.1",
+  "repository": "https://github.com/cadhead/cyberia.git",
+  "author": "https://github.com/cadhead",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "14.x"
+  },
+  "scripts": {
+    "dev:server:nodemon": "nodemon -r esm index.js",
+    "dev:client:parcel-watch": "cd client && yarn watch",
+    "buildclient": "cd client && yarn build",
+    "start": "node -r esm index.js",
+    "dev": "run-p dev:client:parcel-watch dev:server:nodemon"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "client",
+      "www"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "esm": "^3.2.25",
+    "nodemon": "^2.0.6",
+    "npm-run-all": "^4.1.5"
+  },
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^4.6.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.12.2",
+    "helmet": "^4.2.0",
+    "mongoose": "^6.0.8",
+    "passport": "^0.5.0",
+    "passport-local": "^1.0.0",
+    "pug": "^3.0.0",
+    "react-process-string": "^1.2.0",
+    "socket.io": "^3.0.5",
+    "validator": "^13.5.2"
+  }
+}

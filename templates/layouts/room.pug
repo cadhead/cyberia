@@ -1,0 +1,23 @@
+- const clientUser = `{ username: '${user.username}', group: ${user.group}, avatar: '${user.avatar || ''}' }`
+
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    style @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,100;1,400;1,700&display=swap');
+    link(rel="stylesheet", href="/builds/index.css")
+    title=page.title
+  body
+    .Wrapper
+      .Navbar--room#mainNav
+        include ../parts/navbar
+      .Container--room#app
+    block footer
+      include ../parts/footer.pug
+    block scripts
+      script(src="/builds/index.js")
+      if user.username
+        script=`window.USER = ${clientUser}`
+  

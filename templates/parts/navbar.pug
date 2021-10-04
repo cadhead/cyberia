@@ -1,0 +1,13 @@
+ul.Navbar__Menu
+  li.Navbar__Item 
+    a(href="/").Navbar__Link Home
+  li.Navbar__Item 
+    a(href="/rooms").Navbar__Link Rooms
+  if user.username
+    li.Navbar__Item
+        a(href="/").Navbar__Link Options
+    li.Navbar__Item
+      a(href="/logout").Navbar__Link Logout
+  else
+    li.Navbar__Item
+      a(href="/login").Navbar__Link Login

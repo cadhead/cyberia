@@ -1,0 +1,35 @@
+@import '../../variables.scss';
+
+.Input {
+  display: inline-block;
+  width: 100%;
+  margin: 5px 0;
+  padding: 0 5px;
+  line-height: 2;
+  font-size: inherit;
+  color: $text-primary;
+  background: rgba(0,0,0,0.1);
+  border: 0;
+  border-bottom: 1px solid $color-primary;
+
+  &--active,
+  &:focus {
+    @extend .Input;
+    outline: none;
+    border-bottom-color: $color-primary;
+    color: lighten($text_primary, 20);
+    background-position: 0 0;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,.2);
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active {
+    -webkit-text-fill-color: $text-primary!important;
+    color: $text-primary !important;
+    // box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 50000s ease-in-out 0s;
+    background: rgba(0,0,0,0.1);
+  }
+}

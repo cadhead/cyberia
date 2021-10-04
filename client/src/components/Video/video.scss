@@ -1,0 +1,91 @@
+@import '../../variables.scss';
+
+.Video {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  flex-shrink: 2;
+  flex-grow: 100px;
+  margin: 0 .5rem;
+  user-select: none;
+
+  &__EmbedVideo {
+    position: relative;
+    display: block;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 50vh;
+    text-align: center;
+    height: 0;
+    padding-bottom: 50%;
+    overflow: hidden;
+    background: rgba(0,0,0,.3);
+  }
+
+  &__Responsive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border: 0;
+  }
+}
+
+.PlayList {
+  display: flex;
+  flex-direction: column;
+  max-height: auto;
+  overflow: hidden;
+  padding-bottom: 0.5rem;
+
+  &__List {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    overflow: hidden;
+  }
+
+  &__Item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem 0.5rem;
+    background: $color-secondary;
+    border-bottom: 1px dotted $color-primary;
+    opacity: 0.7;
+    transition: 1s;
+
+    &.active {
+      opacity: 1;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 12px;
+      text-transform: uppercase;
+      
+      a {
+        text-decoration: none;
+        color: lighten($color-primary, 40);
+      }
+
+      i.fas {
+        padding-right: 5px;
+        font-size: 12px;
+      }
+    }
+
+    .controlls .Button,
+    .controlls .Button--danger,
+    .controlls .Button--success {
+      font-weight: bold;
+      font-size: 10px;
+    }
+  }
+}

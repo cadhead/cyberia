@@ -1,0 +1,33 @@
+.Progressbar {
+}
+
+.Progressbar__label {
+  display: inline-block;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
+.Progressbar__bar {
+  height: 10px;
+  min-width: 10px;
+  
+  padding: 2px;
+
+  background: #b9cdd4;
+}
+
+.Progressbar__fill {
+  width: 0%;
+  height: 100%;
+
+  background-color: #d19191;
+
+  transition: width .6s ease;
+}
+
+.Progressbar__bar,
+.Progressbar__fill {
+  border-radius: 3px;
+}

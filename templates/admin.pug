@@ -1,0 +1,53 @@
+extends layouts/default.pug
+
+block content
+  .Box 
+    .Box__content
+      .TabsList
+        ul.TabsList__List
+          li.Tabslist__ListItem
+            a.TabsList__ItemLink(href="#users") Users
+          li.Tabslist__ListItem
+            a.TabsList__ItemLink(href="#rooms") Rooms
+          li.Tabslist__ListItem
+            a.TabsList__ItemLink(href="#pages") Pages
+        .TabsList__Contents
+          .TabsList__Tab#users
+            .TabsList__TabContent
+              button.Button Make announcement
+              button.Button Make announcement in chats
+              button.Button Make announcement in room
+              hr
+              table
+                tr
+                  th 
+                    i.fas.fa-user.pr-1
+                    span Username
+                  th
+                    i.fas.fa-envelope.pr-1
+                    span Email
+                  th 
+                    i.fas.fa-users.pr-1
+                    span Group
+                  th 
+                    i.fas.fa-user-cog.pr-1
+                    span Actions
+                tr
+                  td
+                    a(href="/u/Outsider") Outsider
+                    button.Button.ml-2
+                      i.fas.fa-info-circle
+                  td
+                    a(href="mailto:nekorides@gmail.ru") nekorides@gmail.ru
+                  td 999
+                  td
+                    button.Button Edit
+                    button.Button--danger Ban
+                    button.Button--danger Delete
+          .TabsList__Tab#rooms
+            .TabsList__TabContent rooms
+          .TabsList__Tab#pages
+            .TabsList__TabContent pages
+block footer 
+  include parts/footer.pug
+      

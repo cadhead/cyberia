@@ -1,0 +1,45 @@
+@import "../../variables.scss";
+
+$height: 36px;
+$line-height: $height;
+
+.Navbar {
+  line-height: $line-height;
+  font-size: 14px;
+  list-style: none;
+  margin: 0;
+  height: $height;
+  color: #9c9c9c;
+  background: darken($color-secondary, 5);
+  border-bottom: 3px solid darken($color-secondary, 7);
+
+  .Navbar__Menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    max-width: 1180px;
+    height: 100%;
+    margin: auto;
+  }
+
+  .Navbar__Link {
+    display: block;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13px;
+    padding: 0 7px;
+    height: 100%;
+    color: darken($text-primary, 20);
+
+    &:hover,
+    &.active {
+      color: lighten($text-primary, 10);
+      background-color: darken($color-secondary, 7);
+    }
+  }
+}
+
+.Navbar--room {
+  @extend .Navbar
+}

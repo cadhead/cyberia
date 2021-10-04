@@ -1,0 +1,27 @@
+.RoomList
+  if rooms
+    each room in rooms.sort((a, b) => b.userscount-a.userscount)
+      .RoomList__Item
+        .RoomList__ItemInner
+          .RoomList__RoomAvatar
+            img(
+              src="https://lh3.googleusercontent.com/ogw/ADea4I6bXH32N8lz2z1cEt-bjTR_shriBDlWBzb-SJFLPQ=s83-c-mo"
+              alt=`${room.title || room.uniqName}'s room-avatar`
+            )
+          .RoomList__RoomInfo
+            a.title(href=`/r/${room.uniqName}`)= room.title || room.uniqName
+            .description(title="Click to see full description")=room.description || 'Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet'
+            .RoomList__RoomDataIcons
+              .usercount(title="Count users in room")
+                i.fas.fa-users.mr-1
+                span(data-count)=room.userscount
+              .likes(title="Like!")
+                button
+                  i.fas.fa-heart.mr-1
+                  span(data-count)=Math.floor(Math.random() * 999999)
+  else
+    .RoomList__Item
+      .RoomList__ItemInner
+        span No rooms, yet.
+        span
+          a(href="/rooms/new").Button.ml-1 Create one!

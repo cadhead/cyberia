@@ -1,0 +1,28 @@
+@import "../../variables.scss";
+
+.Chat {
+  display: flex;
+  flex-shrink: 0;
+
+  width: 400px;
+  height: 100%;
+  margin: 0 .5rem;
+
+  overflow: hidden;
+  
+  &__Buffer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__Input {
+    margin: 0.5rem 0;
+
+    input {
+      width: 100%;
+    }
+  }
+}
