@@ -12,13 +12,12 @@
 
   &__EmbedVideo {
     position: relative;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 30px;
     font-weight: 300;
-    line-height: 50vh;
-    text-align: center;
-    height: 0;
-    padding-bottom: 50%;
+    height: 80%;
     overflow: hidden;
     background: rgba(0,0,0,.3);
   }
