@@ -4,6 +4,7 @@ import Chat from './Chat';
 import Video from './Video';
 import { useChat } from './Chat/hooks/useChat';
 import { useDidMount } from './hooks/useDidMount';
+import { usePlaylist } from './Video/hooks/usePlaylist';
 
 function initLastMessages(data) {
   let lastMessages = data.lastMessages || data;
@@ -22,7 +23,8 @@ function initLastMessages(data) {
 const Room = ({ socket, data }) => {
   const roomName = window.location.pathname.split('/')[2];
   const lastMessages = initLastMessages(data);
-  const [chatMessages, sendChatMessage, addChatMessage] = useChat(socket, lastMessages);
+  const [chatMessages, sendChatMessage, addChatMessage] = useChat(socket);
+  const playlistManager = usePlaylist(socket);
 
   function handleJoin({ username }) {
     if (username) {
@@ -58,7 +60,7 @@ const Room = ({ socket, data }) => {
   return (
     <Fragment>
       <div className="Video Box">
-        <Video />
+        <Video playlistManager={playlistManager} />
       </div>
       <div className="Chat Box">
         <Chat messages={chatMessages} sendMessage={sendChatMessage} />
