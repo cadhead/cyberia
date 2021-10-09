@@ -3,17 +3,7 @@ import './video.scss';
 import { h, Fragment } from 'preact';
 import PlayList from './playlist';
 import { useEffect, useState } from 'preact/hooks';
-
-const arrayMove = (arr, from, to) => {
-  const temp = [...arr];
-
-  if (from !== to) {
-    temp.splice(from, 1);
-    temp.splice(to, 0, arr[from]);
-  }
-
-  return temp;
-}
+import { arrayMove } from '../../common/helpers/array';
 
 const getYoutubeVideoSnippet = async (id) => {
   const APIKey = 'AIzaSyAPHTeGKACKMAhCfuC1-utWlD4vCMnIVps';
