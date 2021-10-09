@@ -34,7 +34,7 @@ const replaceNode = document.querySelector('#app');
 
     socket.emit('user:join_room', { room: roomUniqName })
     socket.on('user:join_room', async (data) => {
-      const Room = (await import('./src/Room')).default;
+      const Room = (await import('./src/components/Room')).default;
       render(<Room data={data} socket={socket} />, replaceNode)
     });
   }
