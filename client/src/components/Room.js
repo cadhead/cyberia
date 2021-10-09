@@ -1,9 +1,9 @@
 import { h, Fragment } from 'preact';
-import { useEffect, useRef } from 'preact/hooks';
 import { createBotMessage } from '../common/bot-message';
-import Chat from '../components/Chat';
-import Video from '../components/Video';
-import { useChat } from '../components/Chat/hooks/useChat';
+import Chat from './Chat';
+import Video from './Video';
+import { useChat } from './Chat/hooks/useChat';
+import { useDidMount } from './hooks/useDidMount';
 
 function initLastMessages(data) {
   let lastMessages = data.lastMessages || data;
@@ -44,7 +44,7 @@ const Room = ({ socket, data }) => {
     addChatMessage(message);
   }
 
-  useEffect(() => {
+  useDidMount(() => {
     document.title = roomName;
 
     socket.on('user:join_room', handleJoin);
@@ -53,8 +53,7 @@ const Room = ({ socket, data }) => {
 
     chatMessages.forEach((m) => addChatMessage(m));
     lastMessages.forEach((m) => addChatMessage(m));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return (
     <Fragment>
