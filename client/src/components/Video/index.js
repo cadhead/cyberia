@@ -36,7 +36,7 @@ function Video({ }) {
   const addVideo = async ({
     title, url, ytID
   }) => {
-    if (!url.match('http://(www.)?youtube|youtu.be')) return;
+    if (!url.match('(http|https)://(www.)?youtube|youtu.be')) return;
     const youtubeID = url.split(/v\/|v=|youtu\.be\//)[1].split(/[?&]/)[0];
     if (playlistItems.find((i) => i.ytID === ytID || i.ytID === youtubeID)) return;
 
