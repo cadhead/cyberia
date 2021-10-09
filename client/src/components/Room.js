@@ -1,45 +1,21 @@
 import { h, Fragment } from 'preact';
-import { createBotMessage } from '../common/bot-message';
 import Chat from './Chat';
 import Video from './Video';
 import { useChat } from './Chat/hooks/useChat';
 import { useDidMount } from './hooks/useDidMount';
 import { usePlaylist } from './Video/hooks/usePlaylist';
 
-function initLastMessages(data) {
-  let lastMessages = data.lastMessages || data;
-
-  if (data.lastMessages) {
-    lastMessages.push(createBotMessage({
-      text: 'You have successfully connected.'
-    }));
-  } else {
-    lastMessages = [createBotMessage({ text: lastMessages })];
-  }
-
-  return lastMessages;
-}
-
 const Room = ({ socket, data }) => {
   const roomName = window.location.pathname.split('/')[2];
-  const lastMessages = initLastMessages(data);
-  const [chatMessages, sendChatMessage, addChatMessage] = useChat(socket);
+  const [chatMessages, sendChatMessage, addChatMessage] = useChat(socket, data.lastMessages || []);
   const playlistManager = usePlaylist(socket);
 
-  function handleJoin({ username }) {
-    if (username) {
-      addChatMessage(createBotMessage({
-        text: `${username} has joined.`
-      }));
-    }
+  function handleJoin({ /* username */ }) {
+    // ..
   }
 
-  function handleLeave({ username }) {
-    if (username) {
-      addChatMessage(createBotMessage({
-        text: `${username} has leave.`
-      }));
-    }
+  function handleLeave({ /* username */ }) {
+    // ..
   }
 
   function handleChatMessage(message) {
@@ -52,9 +28,6 @@ const Room = ({ socket, data }) => {
     socket.on('user:join_room', handleJoin);
     socket.on('user:leave_room', handleLeave);
     socket.on('user:chat', handleChatMessage);
-
-    chatMessages.forEach((m) => addChatMessage(m));
-    lastMessages.forEach((m) => addChatMessage(m));
   });
 
   return (
