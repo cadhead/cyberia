@@ -1,7 +1,7 @@
 import { useState } from 'preact/hooks';
 
-export const useChat = (socket, lastMessages) => {
-  const [messages, setMessages] = useState([...lastMessages]);
+export const useChat = (socket) => {
+  const [messages, setMessages] = useState([]);
 
   const addMessage = (newMessage) => {
     setMessages(m => [...m, newMessage]);
@@ -12,5 +12,5 @@ export const useChat = (socket, lastMessages) => {
     socket.emit('user:chat', newMessage);
   };
 
-  return [messages, sendMessage, addMessage];
+  return [messages, setMessages, sendMessage, addMessage];
 }

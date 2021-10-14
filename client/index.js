@@ -32,10 +32,9 @@ const replaceNode = document.querySelector('#app');
     const roomUniqName = window.location.pathname.split('/')[2];
     const socket = io(`/r/${roomUniqName}`);
 
-    socket.emit('user:join_room', { room: roomUniqName })
-    socket.on('user:join_room', async (data) => {
+    socket.on('connect', async () => {
       const Room = (await import('./src/components/Room')).default;
-      render(<Room data={data} socket={socket} />, replaceNode)
+      render(<Room socket={socket} />, replaceNode)
     });
   }
 }());

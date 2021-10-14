@@ -6,13 +6,13 @@ import { useDidMount } from './hooks/useDidMount';
 import { usePlaylist } from './Video/hooks/usePlaylist';
 import { createBotMessage } from '../common/bot-message';
 
-const Room = ({ socket, data }) => {
+const Room = ({ socket }) => {
   const roomName = window.location.pathname.split('/')[2];
-  const [chatMessages, sendChatMessage, addChatMessage] = useChat(socket, data.lastMessages || []);
+  const [chatMessages, setChatMessages, sendChatMessage, addChatMessage] = useChat(socket);
   const playlistManager = usePlaylist(socket);
 
-  function handleJoin({ /* username */ }) {
-    // ..
+  function handleJoin(data) {
+    setChatMessages(m => [...data.lastMessages, ...m]);
   }
 
   function handleLeave({ /* username */ }) {
@@ -29,6 +29,7 @@ const Room = ({ socket, data }) => {
 
   useDidMount(() => {
     document.title = roomName;
+    socket.emit('user:join_room', { room: roomName });
     socket.on('user:join_room', handleJoin);
     socket.on('user:leave_room', handleLeave);
     socket.on('user:chat', handleChatMessage);
