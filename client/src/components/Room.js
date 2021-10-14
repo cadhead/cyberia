@@ -29,7 +29,6 @@ const Room = ({ socket, data }) => {
 
   useDidMount(() => {
     document.title = roomName;
-
     socket.on('user:join_room', handleJoin);
     socket.on('user:leave_room', handleLeave);
     socket.on('user:chat', handleChatMessage);
