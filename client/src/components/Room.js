@@ -24,7 +24,6 @@ const Room = ({ socket, data }) => {
   }
 
   function handleChatMessageFromServer(message) {
-    console.log(message)
     addChatMessage(createBotMessage(message));
   }
 
