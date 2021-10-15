@@ -12,6 +12,7 @@
   border: 2px solid $color-primary;
   border-radius: 50%;
   overflow: hidden;
+  user-select: none;
 
   .ChatAvatar__image {
     position: absolute;
