@@ -57,7 +57,6 @@ const Room = ({ socket }) => {
         <Video socket={socket} playlistManager={[
           playlistItems,
           currentPlaylistItem,
-          setPlaylistItems,
           addVideo,
           setNextPlaylistItem,
           setCurrentPlaylistItem,
