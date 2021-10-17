@@ -9,6 +9,10 @@ export const usePlaylist = (socket) => {
     if (!currentPlaylistItem) {
       setCurrentPlaylistItem(playlistItems[0]);
     }
+
+    if (!playlistItems.includes(currentPlaylistItem)) {
+      setCurrentPlaylistItem(playlistItems[0] || null);
+    }
   }, [currentPlaylistItem, playlistItems]);
 
   const addVideo = async ({ url }) => {
@@ -34,7 +38,6 @@ export const usePlaylist = (socket) => {
     temp.splice(index, 1);
 
     setPlaylistItems([...temp]);
-    setCurrentPlaylistItem(null);
   }
 
   const pinPlaylistItem = (item) => {
