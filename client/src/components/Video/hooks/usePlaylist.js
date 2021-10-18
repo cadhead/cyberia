@@ -39,12 +39,8 @@ export const usePlaylist = (socket) => {
     setPlaylistItems([...temp]);
   }
 
-  const pinPlaylistItem = (item) => {
-    const temp = [...playlistItems];
-    const index = temp.indexOf(item);
-    temp[index].isPinned = !temp[index].isPinned;
-
-    setPlaylistItems([...temp]);
+  const pinPlaylistItem = ({ url }) => {
+    socket.emit('playlist:pin', { url });
   }
 
   return [
