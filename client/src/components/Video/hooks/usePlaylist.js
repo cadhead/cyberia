@@ -21,14 +21,7 @@ export const usePlaylist = (socket) => {
   const setNextPlaylistItem = (item) => {
     if (item === currentPlaylistItem) return;
 
-    let temp = [...playlistItems];
-
-    const fromIndex = temp.indexOf(item);
-    const toIndex = temp.indexOf(currentPlaylistItem);
-
-    temp = arrayMove(temp, fromIndex, fromIndex > toIndex ? toIndex + 1 : toIndex);
-
-    setPlaylistItems([...temp])
+    socket.emit('playlist:setNext', item);
   }
 
   const removePlaylistItem = ({ url }) => {
