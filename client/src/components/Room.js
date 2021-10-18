@@ -37,8 +37,8 @@ const Room = ({ socket }) => {
     addChatMessage(createBotMessage(message));
   }
 
-  function handlePlaylistAdd(item) {
-    setPlaylistItems(p => [...p, item]);
+  function handlePlaylistUpdate(playlist) {
+    setPlaylistItems(playlist);
   }
 
   useDidMount(() => {
@@ -48,7 +48,7 @@ const Room = ({ socket }) => {
     socket.on('user:leave_room', handleLeave);
     socket.on('user:chat', handleChatMessage);
     socket.on('server:chat', handleChatMessageFromServer);
-    socket.on('playlist:add', handlePlaylistAdd);
+    socket.on('playlist', handlePlaylistUpdate);
   });
 
   return (
