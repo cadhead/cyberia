@@ -31,12 +31,8 @@ export const usePlaylist = (socket) => {
     setPlaylistItems([...temp])
   }
 
-  const removePlaylistItem = (item) => {
-    const temp = [...playlistItems];
-    const index = temp.indexOf(item);
-    temp.splice(index, 1);
-
-    setPlaylistItems([...temp]);
+  const removePlaylistItem = ({ url }) => {
+    socket.emit('playlist:remove', { url });
   }
 
   const pinPlaylistItem = ({ url }) => {
