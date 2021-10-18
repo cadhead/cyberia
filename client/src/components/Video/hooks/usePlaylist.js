@@ -1,5 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
-import { arrayMove } from "../../../common/helpers/array";
+import { arrayMove } from "../../../../../lib/array";
 
 export const usePlaylist = (socket) => {
   const [playlistItems, setPlaylistItems] = useState([]);
