@@ -6,10 +6,6 @@ export const usePlaylist = (socket) => {
   const [currentPlaylistItem, setCurrentPlaylistItem] = useState(playlistItems[0]);
 
   useEffect(() => {
-    if (!currentPlaylistItem) {
-      setCurrentPlaylistItem(playlistItems[0]);
-    }
-
     if (!playlistItems.includes(currentPlaylistItem)) {
       setCurrentPlaylistItem(playlistItems[0] || null);
     }
