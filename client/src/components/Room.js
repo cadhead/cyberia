@@ -20,8 +20,10 @@ const Room = ({ socket }) => {
   ] = usePlaylist(socket);
 
   function handleJoin(data) {
-    setChatMessages(m => [...data.lastMessages, ...m]);
-    setPlaylistItems(p => [...p, ...data.playlistItems]);
+    const { lastMessages, lastPlaylistItems } = data;
+
+    if (lastMessages) setChatMessages(m => [...lastMessages, ...m]);
+    if (lastPlaylistItems) setPlaylistItems(p => [...p, ...lastPlaylistItems]);
   }
 
   function handleLeave({ /* username */ }) {
