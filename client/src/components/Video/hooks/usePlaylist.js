@@ -6,15 +6,17 @@ export const usePlaylist = (socket) => {
   const [currentPlaylistItem, setCurrentPlaylistItem] = useState(playlistItems[0]);
 
   useEffect(() => {
-    if (!playlistItems.includes(currentPlaylistItem)) {
-      const current = playlistItems.find((item) => item.current === true);
-      setCurrentPlaylistItem(current || null);
-    }
+    const current = playlistItems.find((item) => item.current === true);
+    setCurrentPlaylistItem(current || null);
   }, [currentPlaylistItem, playlistItems]);
 
-  const addVideo = async ({ url }) => {
+  const addVideo = ({ url }) => {
     socket.emit('playlist:add', { url });
   }
+
+  const playVideo = (({ url }) => {
+    socket.emit('playlist:play', { url });
+  });
 
   const setNextPlaylistItem = (item) => {
     if (item === currentPlaylistItem) return;
@@ -50,7 +52,7 @@ export const usePlaylist = (socket) => {
     currentPlaylistItem,
     addVideo,
     setNextPlaylistItem,
-    setCurrentPlaylistItem,
+    playVideo,
     removePlaylistItem,
     pinPlaylistItem,
     setPlaylistItems
