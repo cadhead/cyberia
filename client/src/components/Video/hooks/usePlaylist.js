@@ -7,7 +7,8 @@ export const usePlaylist = (socket) => {
 
   useEffect(() => {
     if (!playlistItems.includes(currentPlaylistItem)) {
-      setCurrentPlaylistItem(playlistItems[0] || null);
+      const current = playlistItems.find((item) => item.current === true);
+      setCurrentPlaylistItem(current || null);
     }
   }, [currentPlaylistItem, playlistItems]);
 
