@@ -21,7 +21,8 @@ function ChatInput({ add, value, setValue }) {
     add({
       user: window.USER,
       timestamp: Date.now(),
-      text: value.substr(0, 300).trim()
+      text: value.substr(0, 300).trim(),
+      meta: 'user-message'
     });
 
     setValue('');

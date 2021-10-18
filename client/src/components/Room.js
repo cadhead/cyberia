@@ -4,7 +4,6 @@ import Video from './Video';
 import { useChat } from './Chat/hooks/useChat';
 import { useDidMount } from './hooks/useDidMount';
 import { usePlaylist } from './Video/hooks/usePlaylist';
-import { createBotMessage } from '../common/bot-message';
 
 const Room = ({ socket }) => {
   const roomName = window.location.pathname.split('/')[2];
@@ -34,7 +33,7 @@ const Room = ({ socket }) => {
   }
 
   function handleChatMessageFromServer(message) {
-    addChatMessage(createBotMessage(message));
+    addChatMessage(message);
   }
 
   function handlePlaylistUpdate(playlist) {

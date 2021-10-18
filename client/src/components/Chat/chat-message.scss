@@ -57,5 +57,21 @@
       margin: 0.2rem 0;
       border: 1px dotted $color-primary;
     }
+
+    &--server {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      text-align: center;
+      opacity: 0.8;
+
+      .ChatMessage__Text {
+        font-size: 90%;
+        border-radius: 0.5rem;
+        max-width: 80%
+      }
+    }
   }
 }
