@@ -29,7 +29,7 @@ function Video({ playlistManager }) {
             className="Input"
             value=""
             placeholder="Paste link, e.g. https://youtu.be/5qap5aO4i9A and press 'enter'"
-            onKeyPress={(e) => e.keyCode === 13 && addVideo({
+            onKeyPress={(e) => e.code === 'Enter' && addVideo({
               url: e.target.value
             })} />
         </div>
