@@ -2,6 +2,7 @@ import './video.scss';
 
 import { h, Fragment } from 'preact';
 import PlayList from './playlist';
+import YoutubeIframe from './yt-iframe';
 
 function Video({ playlistManager }) {
   const [
@@ -19,15 +20,7 @@ function Video({ playlistManager }) {
       <div className="Video__EmbedVideo">
         {currentPlaylistItem ? 'Loading...' : 'Nothing plays, yet. 😪'}
         {currentPlaylistItem
-          && <iframe
-            className="Video__Responsive"
-            id="ytapiplayer"
-            frameborder="0"
-            allowfullscreen="1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            title="YouTube video player"
-            src={`https://www.youtube.com/embed/${currentPlaylistItem.ytID}?autohide=1&amp;autoplay=1&amp;controls=1&amp;iv_load_policy=3&amp;rel=0&amp;wmode=transparent&amp;enablejsapi=1&amp;origin=https%3A%2F%2Fcytu.be&amp;widgetid=1`}
-          />
+          && <YoutubeIframe ytID={currentPlaylistItem.ytID} />
         }
       </div>
       <div className="PlayList">
