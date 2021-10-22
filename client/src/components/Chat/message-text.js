@@ -1,6 +1,14 @@
 import { Fragment, h } from 'preact';
 import processString from 'react-process-string';
 
+const emotes = [
+  { url: '/assets/emotes/drum_dance.gif', name: 'drum_dance' },
+  { url: '/assets/emotes/lain_love.png', name: 'lain_love' },
+  { url: '/assets/emotes/okid.gif', name: 'okid' },
+  { url: '/assets/emotes/pizdos_cat.png', name: 'pizdos_cat' },
+  { url: '/assets/emotes/scanlon.gif', name: 'scanlon' }
+];
+
 const link = {
   regex: /(http|https):\/\/(\w+:{0,1}\w*)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%!\-/]))?/gim,
   fn: (key, result) => (
@@ -37,8 +45,19 @@ const img = {
   )
 };
 
+const emote = {
+  regex: /(:)([a-z0-9_-]+?)(:)/gim,
+  fn: (key, result) => {
+    const emote = emotes.find(e => e.name === result[2])
+    if (!emote) return result.input;
+    return (
+      <img className="emote" src={emote.url} key={key} alt={`:${result[2]}:`} title={`:${result[2]}:`} />
+    )
+  }
+};
+
 function MessageText({text}) {
-  let config = [img, link, user];
+  let config = [img, link, user, emote];
 
   return (
     <Fragment>
