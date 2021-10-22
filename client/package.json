@@ -37,7 +37,7 @@
     "@parcel/babel-plugin-transform-runtime": "^2.0.0-nightly.1823",
     "@parcel/config-default": "^2.0.0-rc.0",
     "@parcel/transformer-raw": "^2.0.0-alpha.3",
-    "@parcel/transformer-sass": "^2.0.0",
+    "@parcel/transformer-sass": "2.0.0-rc.0",
     "babel-eslint": "^10.1.0",
     "babel-preset-preact": "^2.0.0",
     "eslint": "^7.19.0",
