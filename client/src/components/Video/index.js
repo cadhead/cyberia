@@ -20,7 +20,7 @@ function Video({ playlistManager }) {
       <div className="Video__EmbedVideo">
         {currentPlaylistItem ? 'Loading...' : 'Nothing plays, yet. 😪'}
         {currentPlaylistItem
-          && <YoutubeIframe ytID={currentPlaylistItem.ytID} />
+          && <YoutubeIframe item={currentPlaylistItem} />
         }
       </div>
       <div className="PlayList">
