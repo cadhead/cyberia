@@ -1,15 +1,26 @@
 # Cyberia
 About
 ---
-Web application that provides media synchronization and chat for a number of channels.
+Web application that provides media synchronization and chat for a number of rooms.
+
+The both serverside and frontside is written in modern JavaScript and runs on Node.JS. It makes use of a mongodb database to store user registrations and data about each room.
+Cyberia make use preact for frontend developing and parceljs as bundler.
+
 This is a pet project that developed just for fun and learning. I hosting cyberia server at https://cyberiatv.online/
 
 Todo
 ---
+**Code:**
 - Refactor current code
 - Optimize http and db requests
 - Redis for stroing messages, playlists etc.
   - Also make collections for messages and playlist on mongodb
+
+**Futures:**
+- Admin panel
+- Room creation panel
+- Room ranks
+- Site and Room permissions 
 
 Version 1
 ---
