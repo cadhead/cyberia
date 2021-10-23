@@ -24,8 +24,10 @@ const YoutubeIframe = ({ item }) => {
 
     if (Math.abs(item.timeLeft - currentTime) < 3) return;
 
-    player.seekTo(item.timeLeft);
-    player.playVideo();
+    if (item.duration) {
+      player.seekTo(item.timeLeft);
+      player.playVideo();
+    }
   }, [item, player]);
 
   return (
