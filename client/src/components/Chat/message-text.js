@@ -32,7 +32,7 @@ const user = {
 };
 
 const imageDomainsAllowed = [
-  'cyberiatv.com',
+  window.location.host,
   'i.imgur.com',
   '.+?.userapi.com',
   '2ch.hk',
