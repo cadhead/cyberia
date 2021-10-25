@@ -21,7 +21,7 @@
     background: rgba(0,0,0,.3);
   }
 
-  &__Responsive iframe {
+  &__Responsive, &__Responsive iframe {
     position: absolute;
     top: 0;
     left: 0;

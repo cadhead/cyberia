@@ -3,6 +3,7 @@ import './video.scss';
 import { h, Fragment } from 'preact';
 import PlayList from './playlist';
 import YoutubeIframe from './yt-iframe';
+import RawVideo from './raw-video';
 
 function Video({ playlistManager }) {
   const [
@@ -15,13 +16,17 @@ function Video({ playlistManager }) {
     pinPlaylistItem
   ] = playlistManager;
 
+  let VideoElement = <RawVideo item={currentPlaylistItem} />;
+
+  if (currentPlaylistItem && currentPlaylistItem.ytID) {
+    VideoElement = <YoutubeIframe item={currentPlaylistItem} />;
+  }
+
   return (
     <Fragment>
       <div className="Video__EmbedVideo">
         {currentPlaylistItem ? 'Loading...' : 'Nothing plays, yet. 😪'}
-        {currentPlaylistItem
-          && <YoutubeIframe item={currentPlaylistItem} />
-        }
+        {currentPlaylistItem && VideoElement}
       </div>
       <div className="PlayList">
         <div style="display: flex; justify-content: stretch; padding-bottom: 0.5rem">
