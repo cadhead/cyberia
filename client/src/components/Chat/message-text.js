@@ -6,7 +6,13 @@ const emotes = [
   { url: '/assets/emotes/lain_love.png', name: 'lain_love' },
   { url: '/assets/emotes/okid.gif', name: 'okid' },
   { url: '/assets/emotes/pizdos_cat.png', name: 'pizdos_cat' },
-  { url: '/assets/emotes/scanlon.gif', name: 'scanlon' }
+  { url: '/assets/emotes/scanlon.gif', name: 'scanlon' },
+  { url: '/assets/emotes/rolling_yoba.gif', name: 'rolling_yoba' },
+  { url: '/assets/emotes/yoba.png', name: 'yoba' },
+  { url: '/assets/emotes/yoba_in_doubt.png', name: 'yoba_in_doubt' },
+  { url: '/assets/emotes/sad_yoba.png', name: 'sad_yoba' },
+  { url: '/assets/emotes/facepalm_yoba.png', name: 'facepalm_yoba' },
+  { url: '/assets/emotes/teasing_yoba.png', name: 'teasing_yoba' }
 ];
 
 const link = {
