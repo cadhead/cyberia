@@ -67,7 +67,10 @@ function MessageText({text}) {
 
   return (
     <Fragment>
-      {processString(config)(text)}
+      {Array.isArray(text)
+        ? text.map((part, index) => <p key={index}>{processString(config)(part)}</p>)
+        : processString(config)(text)
+      }
     </Fragment>
   )
 }
