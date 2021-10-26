@@ -36,9 +36,10 @@ export const registration = async (req, res) => {
 
     await user.save();
 
+    req.flash('info', [{ msg: 'You have successfully sign up. Now, you can login and join to room.' }]);
     return res.redirect('/login');
   } catch (error) {
-    // req.flash('error', [...errors.array(), 'User already exists.']);
+    req.flash('error', [{ msg: 'Something went wrong. Try again in a few minutes.' }]);
   }
 
   return res.redirect('/login');

@@ -4,7 +4,6 @@ import {
 } from '../controllers/auth';
 import { before } from '../controllers/pages';
 import { body } from 'express-validator';
-import User from '../models/user';
 
 const loginRoute = express.Router();
 
@@ -25,14 +24,5 @@ loginRoute.post('/login', authenticate);
 loginRoute.get('/logout', logout);
 
 loginRoute.post('/login/new', registrationBodyValidate, registration);
-
-loginRoute.get('/dump', async (request, response) => {
-  try {
-    const result = await User.find().exec();
-    response.send(result);
-  } catch (error) {
-    response.status(500).send(error);
-  }
-});
 
 export default loginRoute;
