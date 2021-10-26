@@ -1,11 +1,18 @@
 import { h } from 'preact';
-import { useEffect, useRef } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 
-function ChatInput({ add, value, setValue }) {
+function ChatInput({ add, update }) {
   const input = useRef(null);
+  const [value, setValue] = useState();
+
   useEffect(() => {
-    if (input) input.current.focus();
-  }, [value]);
+    if (input && update.value) {
+      setValue((val) => `${val || ''} ${update.value || ''} `)
+      update.reset();
+
+      input.current.focus();
+    }
+  }, [update, value]);
 
   const validate = () => {
     if (!value) return false;
@@ -14,9 +21,15 @@ function ChatInput({ add, value, setValue }) {
     return true;
   }
 
+  const onChange = (e) => {
+    setValue(e.target.value);
+  }
+
   const sendMessage = (e) => {
     if (e.keyCode !== 13) return;
     if (!validate()) return;
+
+    setValue('');
 
     add({
       user: window.USER,
@@ -24,8 +37,6 @@ function ChatInput({ add, value, setValue }) {
       text: value.substr(0, 300).trim(),
       meta: 'user-message'
     });
-
-    setValue('');
   }
 
   return (
@@ -33,7 +44,7 @@ function ChatInput({ add, value, setValue }) {
       <input
         ref={input}
         value={value}
-        onInput={e => setValue(e.target.value)}
+        onChange={onChange}
         onKeyPress={sendMessage}
         className="Input"
         type="text"

@@ -10,7 +10,7 @@ import ChatInput from './chat-input';
 
 function Chat({ messages, sendMessage }) {
   const scrollSpaceElement = useRef(null);
-  const [inputValue, setInputValue] = useState();
+  const [inputAdditonalValue, setInputAdditonalValue] = useState();
 
   useEffect(() => {
     if (scrollSpaceElement.current.lastChild) {
@@ -21,7 +21,7 @@ function Chat({ messages, sendMessage }) {
   const onUserTagged = (e) => {
     const username = e.target.textContent;
 
-    setInputValue(`${inputValue || ''}@${username} `);
+    setInputAdditonalValue(`@${username}`);
   }
 
   return (
@@ -37,7 +37,9 @@ function Chat({ messages, sendMessage }) {
           )
         })}
       </div>
-      <ChatInput add={sendMessage} value={inputValue} setValue={setInputValue} />
+      <ChatInput
+        update={{ value: inputAdditonalValue, reset: () => setInputAdditonalValue('') }}
+        add={sendMessage} />
     </div>
   );
 }
