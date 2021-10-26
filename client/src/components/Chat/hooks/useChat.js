@@ -4,7 +4,7 @@ export const useChat = (socket) => {
   const [messages, setMessages] = useState([]);
 
   const addMessage = (newMessage) => {
-    const temp = [...messages, newMessage];
+    const temp = [...messages];
     const prevMessage = temp[temp.length - 1] || {};
 
     if (prevMessage.user) {
@@ -12,10 +12,13 @@ export const useChat = (socket) => {
         prevMessage.text = Array.isArray(prevMessage.text)
           ? [...prevMessage.text, newMessage.text]
           : [prevMessage.text, newMessage.text]
+
+        setMessages([...temp]);
+        return;
       }
     }
 
-    setMessages([...temp]);
+    setMessages([...temp, newMessage]);
   }
 
   const sendMessage = (newMessage) => {
