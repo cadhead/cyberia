@@ -2,11 +2,20 @@ extends layouts/default.pug
 
 block content
   - function showErrorMessage(type) {
-    - if (type === 'login') return page.message.filter(m => !m.param);
-    - const errorsOfType = page.message.filter((item) => item.param === type)
+    - if (type === 'login') return page.errors.filter(m => !m.param);
+    - const errorsOfType = page.errors.filter((item) => item.param === type)
     - let errors = []; errorsOfType.forEach(err => { errors.push(err.msg) })
     - return errors
   - }
+
+  if page.messages.length
+    for m in page.messages
+      div(class=!m.meta && 'Notification' class=m.meta && `Notification--${m.meta}`)
+        button.Button.close
+          i.fa.fa-times-circle
+        if m.title 
+          p.title=m.title
+        p.description=m.text
 
   .Box
     .Box__content

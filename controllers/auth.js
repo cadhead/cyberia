@@ -4,7 +4,6 @@ import { createUser, isFirstRegistration, isUserExist } from '../controllers/use
 
 export const render = (req, res) => {
   res.locals.page.title = 'authentication';
-  res.locals.page.message = req.flash('error');
 
   res.render('login');
 };
@@ -15,12 +14,12 @@ export const registration = async (req, res) => {
   const errors = validationResult(req);
 
   if (await isUserExist(username)) {
-    req.flash('error', { param: 'registration', msg: 'Username is already taken.' });
+    req.flash('errors', { param: 'registration', msg: 'Username is already taken.' });
     return res.redirect('/login');
   }
 
   if (!errors.isEmpty()) {
-    req.flash('error', errors.array());
+    req.flash('errors', errors.array());
 
     return res.redirect('/login');
   }
@@ -36,10 +35,10 @@ export const registration = async (req, res) => {
 
     await user.save();
 
-    req.flash('info', [{ msg: 'You have successfully sign up. Now, you can login and join to room.' }]);
+    req.flash('messages', { title: 'Wellcome!', text: 'You have successfully sign up. Now, you can login and join to room.', meta: 'success' });
     return res.redirect('/login');
   } catch (error) {
-    req.flash('error', [{ msg: 'Something went wrong. Try again in a few minutes.' }]);
+    req.flash('errors', [{ msg: 'Something went wrong. Try again in a few minutes.' }]);
   }
 
   return res.redirect('/login');

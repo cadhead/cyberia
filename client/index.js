@@ -14,6 +14,7 @@ import './src/components/RoomList';
 import './src/components/Footer';
 import './src/components/TabsList';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import './src/components/Notification';
 
 const currentRoute = window.location.pathname.split('/')[1];
 const replaceNode = document.querySelector('#app');

@@ -7,7 +7,8 @@ export const before = async (req, res, next) => {
   });
 
   Object.assign(res.locals.page, {
-    messages: req.flash('messages')
+    messages: req.flash('messages'),
+    errors: req.flash('error')
   });
 
   next();
