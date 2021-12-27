@@ -7,7 +7,7 @@ import { usePlaylist } from './Video/hooks/usePlaylist';
 
 const Room = ({ socket }) => {
   const roomName = window.location.pathname.split('/')[2];
-  const [chatMessages, setChatMessages, sendChatMessage, addChatMessage] = useChat(socket);
+  const [chatMessages, setChatMessages, sendChatMessage] = useChat(socket);
   const [
     playlistItems,
     currentPlaylistItem,
@@ -31,11 +31,11 @@ const Room = ({ socket }) => {
   }
 
   function handleChatMessage(message) {
-    addChatMessage(message);
+    setChatMessages(m => [...m, message]);
   }
 
   function handleChatMessageFromServer(message) {
-    addChatMessage(message);
+    setChatMessages(m => [...m, message]);
   }
 
   function handlePlaylistUpdate(playlist) {

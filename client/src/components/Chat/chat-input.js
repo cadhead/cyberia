@@ -29,14 +29,14 @@ function ChatInput({ add, update }) {
     if (e.keyCode !== 13) return;
     if (!validate()) return;
 
-    setValue('');
-
     add({
       user: window.USER,
       timestamp: Date.now(),
       text: value.substr(0, 300).trim(),
       meta: 'user-message'
     });
+
+    setValue('');
   }
 
   return (
