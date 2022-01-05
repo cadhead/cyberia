@@ -4,6 +4,7 @@ import Video from './Video';
 import { useChat } from './Chat/hooks/useChat';
 import { useDidMount } from './hooks/useDidMount';
 import { usePlaylist } from './Video/hooks/usePlaylist';
+import { useState } from 'preact/hooks';
 
 const Room = ({ socket }) => {
   const roomName = window.location.pathname.split('/')[2];
@@ -18,6 +19,8 @@ const Room = ({ socket }) => {
     pinPlaylistItem,
     setPlaylistItems
   ] = usePlaylist(socket);
+
+  const [timeSync, setTimeSync] = useState(null);
 
   function handleJoin(data) {
     const { lastMessages, lastPlaylistItems } = data;
@@ -42,6 +45,10 @@ const Room = ({ socket }) => {
     setPlaylistItems(playlist);
   }
 
+  function handleSync(time) {
+    setTimeSync(time);
+  }
+
   useDidMount(() => {
     document.title = roomName;
     socket.emit('user:join_room', { room: roomName });
@@ -50,6 +57,7 @@ const Room = ({ socket }) => {
     socket.on('user:chat', handleChatMessage);
     socket.on('server:chat', handleChatMessageFromServer);
     socket.on('playlist', handlePlaylistUpdate);
+    socket.on('video:sync', handleSync);
   });
 
   return (
@@ -63,7 +71,7 @@ const Room = ({ socket }) => {
           setCurrentPlaylistItem,
           removePlaylistItem,
           pinPlaylistItem
-        ]} />
+        ]} timeSync={timeSync} />
       </div>
       <div className="Chat Box">
         <Chat messages={chatMessages} sendMessage={sendChatMessage} />

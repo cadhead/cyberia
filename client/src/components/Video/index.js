@@ -5,7 +5,7 @@ import PlayList from './playlist';
 import YoutubeIframe from './yt-iframe';
 import RawVideo from './raw-video';
 
-function Video({ playlistManager }) {
+function Video({ playlistManager, timeSync }) {
   const [
     playlistItems,
     currentPlaylistItem,
@@ -16,10 +16,10 @@ function Video({ playlistManager }) {
     pinPlaylistItem
   ] = playlistManager;
 
-  let VideoElement = <RawVideo item={currentPlaylistItem} />;
+  let VideoElement = <RawVideo item={currentPlaylistItem} timeSync={timeSync} />;
 
   if (currentPlaylistItem && currentPlaylistItem.ytID) {
-    VideoElement = <YoutubeIframe item={currentPlaylistItem} />;
+    VideoElement = <YoutubeIframe item={currentPlaylistItem} timeSync={timeSync} />;
   }
 
   return (

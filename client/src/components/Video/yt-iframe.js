@@ -3,7 +3,7 @@ import { useEffect, useState } from 'preact/hooks';
 
 import YouTubeVideo from 'react-youtube';
 
-const YoutubeIframe = ({ item }) => {
+const YoutubeIframe = ({ item, timeSync }) => {
   const opts = {
     playerVars: {
       autoplay: 1
@@ -22,13 +22,15 @@ const YoutubeIframe = ({ item }) => {
 
     const currentTime = await player.getCurrentTime();
 
-    if (Math.abs(item.timeLeft - currentTime) < 3) return;
+    console.log(timeSync)
+
+    if (Math.abs(timeSync - currentTime) < 3) return;
 
     if (item.duration) {
-      player.seekTo(item.timeLeft);
+      player.seekTo(timeSync);
       player.playVideo();
     }
-  }, [item, player]);
+  }, [item, player, timeSync]);
 
   return (
     <YouTubeVideo
