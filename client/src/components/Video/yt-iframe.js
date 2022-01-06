@@ -22,8 +22,6 @@ const YoutubeIframe = ({ item, timeSync }) => {
 
     const currentTime = await player.getCurrentTime();
 
-    console.log(timeSync)
-
     if (Math.abs(timeSync - currentTime) < 3) return;
 
     if (item.duration) {
